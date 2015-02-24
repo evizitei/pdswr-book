@@ -1,3 +1,26 @@
 1) pulled first data set from http://win-vector.com/dfiles/car.data.csv
 Counts: (wc -> 1729 1729 51917)
 Shasum: 12dfb16f7c1f4d437db7275a087db52d21adae85  data/car.data.csv
+applicable script:  car_data_loading.r
+
+2) for Transformation practice, pulled from
+url: http://archive.ics.uci.edu/ml/machine-learning-databases/statlog/german/german.data
+Counts: (wc -> 1000 21000 79793)
+Shasum: 6d35de9090a3abd65dac9a0167647619fa72528c  data/german.data
+applicable script: german_transformation.r
+data dictionary: http://archive.ics.uci.edu/ml/datasets/Statlog+(German+Credit+Data)
+Simple Dictionary transformation into useful list values:
+
+  Paste attributes section from browser into text file
+
+  cat german.loancodes.raw | grep ^A[0-9] | sed "s/^A[0-9][0-9]*/'&'/" | sed "s/[^:]*$/'&'/" | sed "s/'[^']*:[^']*'/'='/" | sed "s/' /'/" | sed "s/'$/',/" > german.loancodes
+
+  # this does all the following
+  cat german.loancodes.raw |        # output the raw attributes into a stream
+  grep ^A[0-9] |                    # select only lines that start with "A423" or similar
+  sed "s/^A[0-9][0-9]*/'&'/" |      # format attributes with single quotes around them
+  sed "s/[^:]*$/'&'/" |             # format the value string with single quotes
+  sed "s/'[^']*:[^']*'/'='/" |      # replace the mapping information with a simple equals
+  sed "s/' /'/" |                   # trim leading whitespace in value strings, write to file
+  sed "s/'$/',/"                    # end each line with a comma
+  > german.loancodes                # write out to a file
