@@ -24,3 +24,12 @@ Simple Dictionary transformation into useful list values:
   sed "s/' /'/" |                   # trim leading whitespace in value strings, write to file
   sed "s/'$/',/"                    # end each line with a comma
   > german.loancodes                # write out to a file
+
+3) For first relational database example:
+url: http://www.census.gov/acs/www/data_documentation/pums_data/
+
+4) for customer data for chapter 3
+url: https://raw.githubusercontent.com/WinVector/zmPDSwR/master/Custdata/custdata
+Counts: (wc -> 1001   12745   74943)
+Shasum: 4484980e405a71ee5682be99db05bc7f1af0e3ce  custdata.tsv
+applicable script: explore_cust_data.r
